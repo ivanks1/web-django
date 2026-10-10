@@ -17,12 +17,17 @@
     </header>
 
     <main class="container">
-        <h1>Профиль пользователя: {{ username }}</h1>
+        <h1>{{ hello_message }}, {{ username }}</h1>
+        <avatar>
+            <img class="avatar" src="{% static 'images/avatar-default.png' %}" alt="Аватар пользователя">
+            <p>{{ status }}</p>
+        </avatar>
         <p>Имя: {{ username }}</p>
         <p>Возраст: {{ age }}</p>
         <p>Страна-город: {{ city }}</p>
         <p>IP-адрес: {{ ip_address }}</p>
         <p>О себе: {{ about_me }}</p>
+        <p>Email: {{ email }}</p>
     </main>
 
     <footer class="hint">Чтобы найти пользователя, добавьте в URL "/username". Например: /user/Ivan</footer>

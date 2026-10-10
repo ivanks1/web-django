@@ -44,21 +44,34 @@ nav a:hover {
     width: 80%;
     max-width: 1100px;
     margin: auto;
+    margin-bottom: 20px;
 }
 
 .container h1 {
     display: flex;
     justify-content: center;
     margin-top: 25px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.avatar {
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;  
+}
+
+.avatar p {
+    display: flex;
+    margin-left: 60px;
 }
 
 .container p {
     display: flex;
     margin: 10px 0;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 20px;
-    font-weight: 100;
 }
 
 .hint {
@@ -69,3 +82,4 @@ nav a:hover {
     color: #888;
     margin-top: 10px;
 }
+
