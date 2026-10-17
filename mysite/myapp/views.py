@@ -13,7 +13,6 @@ def about(request):
 def user_profile(request, username):
     user = UserProfiles.get(username)
 
-
     if datetime.now().hour < 12: # datetime.now().hour - узнать текущий час
         hello_message = "Доброе утро" # новая переменная с приветствием в зависимости от времени суток
     elif datetime.now().hour < 18:
@@ -49,3 +48,6 @@ def user_profile(request, username):
         'email': email,
         'is_online': is_online
     })
+
+def about_jinja(request):
+    return render(request, 'about_jinja.html')

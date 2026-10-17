@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jinja</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}"> 
+    <link rel="stylesheet" href="{% static 'css/about_jinja.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/about/">Об авторе</a>
+            <a href="/user/">Профиль пользователя</a>
+            <a href="/jinja/" style="color: gray">Jinja</a>
+        </nav>
+    </header>
+    <main class="container">
+        <section class="heading-h1">
+            <h1 class="title-jinja">Jinja — язык-шаблонизатор</h1>
+
+            <p class="definition">Jinja (Jinja2) — это шаблонизатор для языка программирования Python. 
+            Он позволяет создавать динамические HTML-страницы и другие текстовые файлы, подставляя в готовые шаблоны данные из программы.
+            Например, если на сайте есть страница профиля пользователя, Jinja может подставлять имя, фамилию, фотографию и другую 
+            информацию для каждого пользователя.
+            </p>
+            
+            <ul class="possibilities"><p>Основные возможности Jinja:</p>
+                <li>Динамические страницы. Подстановка данных из Python в HTML.</li>
+                <li>Условия. Отображение разных элементов в зависимости от определённых условий.</li>
+                <li>Циклы. Вывод списков товаров, пользователей, сообщений и других объектов.</li>
+                <li>Повторное использование кода. Создание общих шаблонов для шапки, меню и подвала сайта.</li>
+                <li>Удобная поддержка проекта. Разделение HTML-разметки и Python-кода делает проект понятнее и проще в обслуживании.</li>
+            </ul>
+
+            <p>Например, введите любой возраст — <input type="number" id="age-gap" placeholder="0-99"></p>
+            <button></button>
+
+        </section>
+
+
+    </main>
+</body>
+</html>
