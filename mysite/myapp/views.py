@@ -25,10 +25,7 @@ def user_profile(request, username):
 
     email = username + '@gmail.com' # формируем email на основе имени пользователя
 
-    if random.random() < 0.5: # 50% шанс
-        status = "Онлайн, веселый"
-    else:
-        status = "Оффлайн, грустный"
+    is_online = random.random() < 0.5
 
     if user is None: # если пользователь не найден в базе данных (models.py)
         return render(request, 'user_profile.html', {
@@ -39,7 +36,7 @@ def user_profile(request, username):
             'about_me': '?',
             'hello_message': hello_message,
             'email': email,
-            'status': ''
+            'is_online': False
         })
 
     return render(request, 'user_profile.html', { # если пользователь найден в базе данных (models.py)
@@ -50,5 +47,5 @@ def user_profile(request, username):
         'about_me': user['about_me'],
         'hello_message': hello_message,
         'email': email,
-        'status': status
+        'is_online': is_online
     })

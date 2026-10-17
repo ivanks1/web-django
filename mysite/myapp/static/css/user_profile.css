@@ -48,23 +48,51 @@ nav a:hover {
 }
 
 .container h1 {
+    margin: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.profile-heading {
     display: flex;
+    align-items: center;
     justify-content: center;
+    gap: 16px;
     margin-top: 25px;
     margin-bottom: 20px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.avatar-wrapper {
+    position: relative;
+    flex: 0 0 80px;
+    width: 75px;
+    height: 75px;
 }
 
 .avatar {
     display: block;
-    margin: 0 auto;
-    width: 100px;
-    height: 100px;  
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
 }
 
-.avatar p {
-    display: flex;
-    margin-left: 60px;
+.avatar-status {
+    position: absolute;
+    display: block;
+    z-index: 1;
+    right: 2px;
+    bottom: 2px;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f5f7fb;
+    border-radius: 50%;
+}
+
+.avatar-status.is-online {
+    background: #2eaf62;
+}
+
+.avatar-status.is-offline {
+    background: #9299a3;
 }
 
 .container p {
@@ -82,4 +110,3 @@ nav a:hover {
     color: #888;
     margin-top: 10px;
 }
-
