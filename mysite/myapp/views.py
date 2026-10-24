@@ -10,7 +10,7 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-def user_profile(request, username):
+def user_profile(request, username):  # функция для отображения страницы профиля пользователя
     user = UserProfiles.get(username)
 
     if datetime.now().hour < 12: # datetime.now().hour - узнать текущий час
@@ -49,5 +49,15 @@ def user_profile(request, username):
         'is_online': is_online
     })
 
-def about_jinja(request):
-    return render(request, 'about_jinja.html')
+def about_jinja(request):  # функция для отображения страницы "Jinja"
+    context = {}
+
+    if request.method == "POST":
+        context = {
+            "surname": request.POST.get("surname", ""),
+            "name": request.POST.get("name", ""),
+            "age": request.POST.get("age", ""),
+            "profession": request.POST.get("profession", ""),
+            "skills": request.POST.get("skills", ""),
+        }
+    return render(request, 'about_jinja.html', context)

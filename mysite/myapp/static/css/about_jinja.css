@@ -142,3 +142,25 @@ nav a:hover {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 700;
 }
+
+.cycles {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+}
+
+.cycles h1 {
+    display: flex;
+    justify-content: center;
+    margin: 40px 20px 20px 20px;
+}
+
+.cycles input {
+    display: inline-flex;
+    max-width: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.cycles p {
+    margin: 10px 20px 10px 20px;
+}

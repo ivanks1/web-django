@@ -37,11 +37,11 @@
             </ul>
 
             <p class="gap-resume">Например, давайте составим резюме для работодателя</p>
-            <p class="text-resume">Фамилия: <input type="text" id="surname" placeholder="Иванов" class="autoExpand gap"></p>
-            <p class="text-resume">Имя: <input type="text" id="name" placeholder="Иван" class="autoExpand gap"></p>
-            <p class="text-resume">Возраст: <input type="number" id="age" placeholder="0-99" class="autoExpand gap"></p>
-            <p class="text-resume">Профессия: <input type="text" id="profession" placeholder="Программист" class="autoExpand gap"></p>
-            <p class="text-resume">Навыки: <input type="text" id="skills" placeholder="C++, Python" class="autoExpand gap"></p>
+            <p class="text-resume">Фамилия: <input type="text" name="surname" placeholder="Иванов" class="autoExpand gap"></p>
+            <p class="text-resume">Имя: <input type="text" name="name" placeholder="Иван" class="autoExpand gap"></p>
+            <p class="text-resume">Возраст: <input type="number" name="age" placeholder="0-99" class="autoExpand gap"></p>
+            <p class="text-resume">Профессия: <input type="text" name="profession" placeholder="Программист" class="autoExpand gap"></p>
+            <p class="text-resume">Навыки: <input type="text" name="skills" placeholder="C++, Python" class="autoExpand gap"></p>
             <button class="button-resume" onclick="createResume()"><p>Составить резюме</p></button>
 
             <button></button>
@@ -57,27 +57,29 @@
             <p class="text-ready-resume">Навыки: {{ skills }}<span id="skills"></span></p>
         </section>
 
+        <section class="cycles">
+            <h1 class="heading-h1">Пример простых циклов</h1>
+            <p>Какие числа отобразить в списке? <input type="radio" name="number-type"> Четные <input type="radio" name="number-type"> Нечетные <input type="radio" name="number-type"> Простые <input type="radio" name="number-type"> Все</p>
+            <p>Область определения - от: <input type="text"> до: <input type="text"></p>
+
+            
+
+        </section>
+
 
     </main>
 
     <script>
+
     const textarea = document.getElementsByClassName('autoExpand');
+
     for (let i = 0; i < textarea.length; i++) {
         textarea[i].addEventListener('input', function() {
-    
-      // 2. Set the width to match the content's scroll width
         this.style.width = (this.scrollWidth) + 'px';
         });
     }
 
     function createResume() {
-        surname = document.getElementById('surname').value
-        name = document.getElementById('name').value
-        age = document.getElementById('age').value
-        profession = document.getElementById('profession').value
-        skills = document.getElementById('skills').value
-
-        // Update the resume section with the input values
         document.querySelector('.ready-resume #surname').textContent = surname
         document.querySelector('.ready-resume #name').textContent = name
         document.querySelector('.ready-resume #age').textContent = age
