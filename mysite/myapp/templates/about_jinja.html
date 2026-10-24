@@ -1,12 +1,12 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jinja</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}"> 
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}"> 
     <link rel="stylesheet" href="{% static 'css/about_jinja.css' %}">
 </head>
 <body>
@@ -28,7 +28,8 @@
             информацию для каждого пользователя.
             </p>
             
-            <ul class="possibilities"><p>Основные возможности Jinja:</p>
+            <p class="possibilities-title">Основные возможности Jinja:</p>
+            <ul class="possibilities">
                 <li>Динамические страницы. Подстановка данных из Python в HTML.</li>
                 <li>Условия. Отображение разных элементов в зависимости от определённых условий.</li>
                 <li>Циклы. Вывод списков товаров, пользователей, сообщений и других объектов.</li>
@@ -37,57 +38,79 @@
             </ul>
 
             <p class="gap-resume">Например, давайте составим резюме для работодателя</p>
-            <p class="text-resume">Фамилия: <input type="text" name="surname" placeholder="Иванов" class="autoExpand gap"></p>
-            <p class="text-resume">Имя: <input type="text" name="name" placeholder="Иван" class="autoExpand gap"></p>
-            <p class="text-resume">Возраст: <input type="number" name="age" placeholder="0-99" class="autoExpand gap"></p>
-            <p class="text-resume">Профессия: <input type="text" name="profession" placeholder="Программист" class="autoExpand gap"></p>
-            <p class="text-resume">Навыки: <input type="text" name="skills" placeholder="C++, Python" class="autoExpand gap"></p>
-            <button class="button-resume" onclick="createResume()"><p>Составить резюме</p></button>
-
-            <button></button>
+            <p class="template-note">Этот пример использует шаблонизатор Django: Python проверяет данные формы и передаёт их в HTML.</p>
+            <form method="post" action="{% url 'about_jinja' %}">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="text-resume">
+                        {{ field.label_tag }} {{ field }}
+                        {{ field.errors }}
+                    </div>
+                {% endfor %}
+                <button class="button-resume" type="submit">Составить резюме</button>
+                <button class="button-resume" type="button" id="preview-resume">Предпросмотр</button>
+            </form>
 
         </section>
 
         <section class="ready-resume">
             <h2 class="title-ready-resume">Резюме</h2>
-            <p class="text-ready-resume">Фамилия: {{ surname }}<span id="surname"></span></p>
-            <p class="text-ready-resume">Имя: {{ name }}<span id="name"></span></p>
-            <p class="text-ready-resume">Возраст: {{ age }}<span id="age"></span></p>
-            <p class="text-ready-resume">Профессия: {{ profession }}<span id="profession"></span></p>
-            <p class="text-ready-resume">Навыки: {{ skills }}<span id="skills"></span></p>
+            {% if resume %}
+                <p class="text-ready-resume">Резюме сохранено.</p>
+                <p class="text-ready-resume">Фамилия: {{ resume.surname }}</p>
+                <p class="text-ready-resume">Имя: {{ resume.name }}</p>
+                <p class="text-ready-resume">Возраст: {{ resume.age }}</p>
+                <p class="text-ready-resume">Профессия: {{ resume.profession }}</p>
+                <p class="text-ready-resume">Навыки: {{ resume.skills }}</p>
+            {% else %}
+                <p>Заполните форму и нажмите «Составить резюме».</p>
+            {% endif %}
         </section>
 
-        <section class="cycles">
-            <h1 class="heading-h1">Пример простых циклов</h1>
-            <p>Какие числа отобразить в списке? <input type="radio" name="number-type"> Четные <input type="radio" name="number-type"> Нечетные <input type="radio" name="number-type"> Простые <input type="radio" name="number-type"> Все</p>
-            <p>Область определения - от: <input type="text"> до: <input type="text"></p>
+        <section class="ready-resume" id="resume-preview" hidden aria-live="polite">
+            <h2 class="title-ready-resume">Предпросмотр</h2>
+            <p>Данные ещё не отправлены в Python.</p>
+            <p>Фамилия: <span data-preview="surname"></span></p>
+            <p>Имя: <span data-preview="name"></span></p>
+            <p>Возраст: <span data-preview="age"></span></p>
+            <p>Профессия: <span data-preview="profession"></span></p>
+            <p>Навыки: <span data-preview="skills"></span></p>
+        </section>
 
-            
-
+        <section class="cycles" id="cycles">
+            <h2>Пример простых циклов</h2>
+            <p>Обе границы включены. Допустимы числа от −1 000 000 до 1 000 000,
+                не более 1000 чисел в диапазоне.</p>
+            <form method="get" action="{% url 'about_jinja' %}#cycles">
+                {{ number_form.non_field_errors }}
+                <fieldset>
+                    <legend>{{ number_form.number_type.label }}</legend>
+                    {{ number_form.number_type }}
+                    {{ number_form.number_type.errors }}
+                </fieldset>
+                <div class="range-field">{{ number_form.start.label_tag }} {{ number_form.start }}
+                    {{ number_form.start.errors }}</div>
+                <div class="range-field">{{ number_form.end.label_tag }} {{ number_form.end }}
+                    {{ number_form.end.errors }}</div>
+                <button class="button-resume" type="submit">Показать числа</button>
+            </form>
+            {% if numbers_ready %}
+                <h3>Результат</h3>
+                <p>Найдено чисел: {{ numbers|length }}</p>
+                <ul class="number-results">
+                    {% for number in numbers %}
+                        <li>{{ number }}</li>
+                    {% empty %}
+                        <li>В этом диапазоне подходящих чисел нет.</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </section>
 
 
     </main>
 
-    <script>
-
-    const textarea = document.getElementsByClassName('autoExpand');
-
-    for (let i = 0; i < textarea.length; i++) {
-        textarea[i].addEventListener('input', function() {
-        this.style.width = (this.scrollWidth) + 'px';
-        });
-    }
-
-    function createResume() {
-        document.querySelector('.ready-resume #surname').textContent = surname
-        document.querySelector('.ready-resume #name').textContent = name
-        document.querySelector('.ready-resume #age').textContent = age
-        document.querySelector('.ready-resume #profession').textContent = profession
-        document.querySelector('.ready-resume #skills').textContent = skills
-    }
-
-    </script>
+    <script src="{% static 'js/about_jinja.js' %}" defer></script>
 
 </body>
 </html>

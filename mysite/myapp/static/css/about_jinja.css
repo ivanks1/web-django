@@ -21,6 +21,7 @@ header {
 
 nav {
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
 }
 
@@ -59,7 +60,8 @@ nav a:hover {
     margin: 0px 20px 40px 20px;
 }
 
-.possibilities p {
+.possibilities-title {
+    margin: 0 20px 10px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 700;
     font-size: 20px;
@@ -91,6 +93,7 @@ nav a:hover {
 
 .gap {
     width: auto;
+    max-width: 100%;
     padding: 5px;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -121,6 +124,7 @@ nav a:hover {
 
 
 .ready-resume {
+    overflow-wrap: anywhere;
     margin: 20px 20px 20px 20px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 700;
@@ -148,7 +152,7 @@ nav a:hover {
     font-weight: 600;
 }
 
-.cycles h1 {
+.cycles h2 {
     display: flex;
     justify-content: center;
     margin: 40px 20px 20px 20px;
@@ -156,11 +160,56 @@ nav a:hover {
 
 .cycles input {
     display: inline-flex;
-    max-width: 40px;
+    max-width: 100%;
     margin-left: 10px;
     margin-right: 10px;
 }
 
-.cycles p {
+.cycles p, .range-field {
     margin: 10px 20px 10px 20px;
+}
+
+.cycles fieldset {
+    margin: 20px;
+    padding: 12px;
+    border: 1px solid #ccc;
+}
+
+.cycles h3 {
+    margin: 20px;
+}
+
+.number-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.number-results li {
+    padding: 6px 10px;
+    background: white;
+    border-radius: 4px;
+}
+
+.errorlist {
+    color: #a51d28;
+    margin: 8px 0 8px 20px;
+}
+
+.template-note {
+    margin: 0 20px 20px;
+}
+
+@media (max-width: 600px) {
+    .text-resume label {
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    .gap {
+        margin-left: 0;
+    }
 }
